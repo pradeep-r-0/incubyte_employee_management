@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: [ :create, :update, :destroy ]
   before_action :set_employee, only: %i[ show edit update destroy calculate_net_salary ]
 
   rescue_from ActionController::ParameterMissing, with: :render_param_missing

@@ -2,9 +2,8 @@ require "test_helper"
 
 class EmployeesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @employee = employees(:one)
-    @employee_indian = Employee.create!(full_name: "Ram", job_title: "SDE", country: "India", salary: 300000)
-    @employee_us = Employee.create!(full_name: "Laxman", job_title: "SDE", country: "India", salary: 500000)
+    @employee_1 = Employee.create!(full_name: "Ram #{SecureRandom.hex(4)}", job_title: "SDE", country: "India", salary: 300000)
+    @employee_2 = Employee.create!(full_name: "Laxman #{SecureRandom.hex(4)}", job_title: "SDE", country: "India", salary: 500000)
   end
 
   test "should get index" do
@@ -19,30 +18,35 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create employee" do
     assert_difference("Employee.count") do
-      post employees_url, params: { employee: { country: @employee.country, full_name: @employee.full_name, job_title: @employee.job_title, salary: @employee.salary } }
+      post employees_url, params: { employee: {
+        full_name: "NewEmployee_1 #{SecureRandom.hex(4)}",
+        job_title: "QA Engineer",
+        country: "India",
+        salary: 400000
+      } }
     end
 
     assert_redirected_to employee_url(Employee.last)
   end
 
   test "should show employee" do
-    get employee_url(@employee)
+    get employee_url(@employee_1)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_employee_url(@employee)
+    get edit_employee_url(@employee_1)
     assert_response :success
   end
 
   test "should update employee" do
-    patch employee_url(@employee), params: { employee: { country: @employee.country, full_name: @employee.full_name, job_title: @employee.job_title, salary: @employee.salary } }
-    assert_redirected_to employee_url(@employee)
+    patch employee_url(@employee_1), params: { employee: { country: @employee_1.country, full_name: @employee_1.full_name, job_title: @employee_1.job_title, salary: @employee_1.salary } }
+    assert_redirected_to employee_url(@employee_1)
   end
 
   test "should destroy employee" do
     assert_difference("Employee.count", -1) do
-      delete employee_url(@employee)
+      delete employee_url(@employee_1)
     end
 
     assert_redirected_to employees_url

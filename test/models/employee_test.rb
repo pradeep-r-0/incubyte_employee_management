@@ -4,7 +4,7 @@ class EmployeeTest < ActiveSupport::TestCase
   # Runs before every test
   setup do
     @employee = Employee.new(
-      full_name: "Ramesh",
+      full_name: "Ramesh #{SecureRandom.hex(4)}",
       job_title: "SDE",
       country: "India",
       salary: 100000

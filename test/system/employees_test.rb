@@ -2,7 +2,12 @@ require "application_system_test_case"
 
 class EmployeesTest < ApplicationSystemTestCase
   setup do
-    @employee = employees(:one)
+    @employee = Employee.create!(
+      full_name: "ExistingEmployee_#{SecureRandom.hex(3)}",
+      job_title: "SDE",
+      country: "India",
+      salary: 300000
+    )
   end
 
   test "visiting the index" do
@@ -15,7 +20,7 @@ class EmployeesTest < ApplicationSystemTestCase
     click_on "New employee"
 
     fill_in "Country", with: @employee.country
-    fill_in "Full name", with: @employee.full_name
+    fill_in "Full name", with: @employee.full_name+"#{SecureRandom.hex(3)}"
     fill_in "Job title", with: @employee.job_title
     fill_in "Salary", with: @employee.salary
     click_on "Create Employee"

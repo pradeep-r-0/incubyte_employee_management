@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_30_141244) do
+ActiveRecord::Schema[7.2].define(version: 2025_12_30_164416) do
   create_table "employees", force: :cascade do |t|
-    t.string "full_name"
-    t.string "job_title"
-    t.string "country"
-    t.decimal "salary"
+    t.string "full_name", null: false
+    t.string "job_title", null: false
+    t.string "country", null: false
+    t.decimal "salary", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["country"], name: "index_employees_on_country"
+    t.index ["full_name"], name: "index_employees_on_full_name", unique: true
+    t.index ["job_title"], name: "index_employees_on_job_title"
   end
 end

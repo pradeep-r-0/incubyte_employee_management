@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  full_name: MyString
+  full_name: MyString1
   job_title: MyString
   country: MyString
   salary: 9.99
 
 two:
-  full_name: MyString
+  full_name: MyString2
   job_title: MyString
   country: MyString
   salary: 9.99
